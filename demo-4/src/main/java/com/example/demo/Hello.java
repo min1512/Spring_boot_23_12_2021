@@ -12,5 +12,11 @@ public class Hello {
 		String msg = "Hello Spring MVC World!";
 		return ResponseEntity.ok(msg);
 	}
+	
+	@GetMapping("/login")
+	public ResponseEntity<String> login() {
+		String msg = "loginPage";
+		return ResponseEntity.ok(msg);
+	}
 
 }
