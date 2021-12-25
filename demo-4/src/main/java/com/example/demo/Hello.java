@@ -18,5 +18,11 @@ public class Hello {
 		String msg = "loginPage";
 		return ResponseEntity.ok(msg);
 	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<String> search() {
+		String msg = "searchPage";
+		return ResponseEntity.ok(msg);
+	}
 
 }
