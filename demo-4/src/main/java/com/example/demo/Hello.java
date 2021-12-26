@@ -1,10 +1,11 @@
 package com.example.demo;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class Hello {
 
 	@GetMapping("/")
@@ -30,5 +31,16 @@ public class Hello {
 		String msg = "testPage";
 		return ResponseEntity.ok(msg);
 	}
-
+	
+	@GetMapping("/hi")
+	public String hi(Model model) {
+		model.addAttribute("username","상민");
+		return "hi";
+	}
+	
+	@GetMapping("/bye")
+	public String bye(Model model) {
+		model.addAttribute("username","상민");
+		return "bye";
+	}
 }
