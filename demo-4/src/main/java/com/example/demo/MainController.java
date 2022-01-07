@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Hello {
+public class MainController {
 
 	@GetMapping("/")
-	public ResponseEntity<String> hello() {
-		String msg = "Hello Spring MVC World!!";
-		return ResponseEntity.ok(msg);
+	public String indexPage(Model model) {
+		model.addAttribute("name","sangmin");
+		return "index";
 	}
 	
 	@GetMapping("/login")
