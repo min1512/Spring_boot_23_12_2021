@@ -34,13 +34,13 @@ public class Hello {
 	
 	@GetMapping("/hi")
 	public String hi(Model model) {
-		model.addAttribute("username","�긽誘�");
+		model.addAttribute("username","상민");
 		return "hi";
 	}
 	
 	@GetMapping("/bye")
 	public String bye(Model model) {
-		model.addAttribute("username","�긽誘�");
+		model.addAttribute("username","상민");
 		return "bye";
 	}
 }
