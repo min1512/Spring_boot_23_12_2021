@@ -11,7 +11,7 @@ public class Hello {
 	@GetMapping("/")
 	public String hello(Model model) {
 		model.addAttribute("hello","sangmin");
-		return "/hello";
+		return "hello";
 	}
 	
 	@GetMapping("/login")
