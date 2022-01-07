@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Hello {
 
 	@GetMapping("/")
-	public ResponseEntity<String> hello() {
-		String msg = "Hello Spring MVC World!!";
-		return ResponseEntity.ok(msg);
+	public String hello(Model model) {
+		model.addAttribute("hello","sangmin");
+		return "/hello";
 	}
 	
 	@GetMapping("/login")
@@ -34,13 +34,13 @@ public class Hello {
 	
 	@GetMapping("/hi")
 	public String hi(Model model) {
-		model.addAttribute("username","상민");
+		model.addAttribute("username","�긽誘�");
 		return "hi";
 	}
 	
 	@GetMapping("/bye")
 	public String bye(Model model) {
-		model.addAttribute("username","상민");
+		model.addAttribute("username","�긽誘�");
 		return "bye";
 	}
 }
