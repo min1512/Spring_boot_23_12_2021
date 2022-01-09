@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardRepository {
   List<Map<String, Object>> getBoards();
+  String insertBoards();
 }

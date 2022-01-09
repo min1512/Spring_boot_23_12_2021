@@ -6,4 +6,12 @@
   <select id="getBoards" resultType="java.util.HashMap">
     SELECT * FROM cafe;
   </select>
+  <insert id="insertBoards" parameterType="com.example.demo.dto.BoardForm">
+  	INSERT INTO BOARD(
+  		title, content
+  	)	VALUES(
+  		#{title}
+  		,#{content}
+  	)
+  </insert>
 </mapper>
