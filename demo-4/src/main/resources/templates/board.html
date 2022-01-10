@@ -9,6 +9,7 @@
 		<table class="table"> 
 			<tr>
 				<th>제목</th>
+				<th>내용</th>
 				<th>작성자</th>
 				<th>등록 날짜</th>
 				<th>
@@ -18,6 +19,7 @@
 			<tr th:each="board : ${boardList}">
 				<td th:text="${board.title}"></td>
 				<td th:text="${board.content}"></td>
+				<td th:text="${board.user}"></td>
 				<td th:text="${board.reg_date}"></td>
 			</tr>
 		</table>

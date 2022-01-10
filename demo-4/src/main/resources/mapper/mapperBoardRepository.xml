@@ -5,7 +5,10 @@
 <mapper namespace="com.example.demo.repository.BoardRepository">
   <select id="getBoards" resultType="java.util.HashMap">
     SELECT
-    	* 
+    	B.title,
+		B.content,  
+		ifnull(B.user,'GUEST') AS user,
+		B.reg_date 
     FROM
     	BOARD B
    	WHERE
