@@ -19,7 +19,8 @@ public class BoardController {
   
   @GetMapping("/board")
   public String board(Model model) {
-	  model.addAttribute("board","게시판");
+	  model.addAttribute("boardList",boardService.getBoards());
+	  System.out.println(boardService.getBoards());
 	  return "board";
   }
   
@@ -33,7 +34,7 @@ public class BoardController {
   public String createBoard(BoardForm form) {
 	  System.out.println(form.toString());
 	  boardService.insertBoards(form);
-	  return "redirect:/board/insert";
+	  return "redirect:/board";
   }
   
   @GetMapping("/v1/board")

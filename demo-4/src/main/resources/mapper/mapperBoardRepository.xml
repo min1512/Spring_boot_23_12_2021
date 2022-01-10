@@ -4,7 +4,15 @@
 
 <mapper namespace="com.example.demo.repository.BoardRepository">
   <select id="getBoards" resultType="java.util.HashMap">
-    SELECT * FROM cafe;
+    SELECT
+    	* 
+    FROM
+    	BOARD B
+   	WHERE
+   		B.title IS NOT NULL
+   			AND
+		B.content IS NOT NULL	
+    ;
   </select>
   <insert id="insertBoards" parameterType="com.example.demo.dto.BoardForm">
   	INSERT INTO BOARD(

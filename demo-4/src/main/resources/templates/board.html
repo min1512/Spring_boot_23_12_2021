@@ -15,8 +15,10 @@
 					<button type="button" class="btn btn-dark" th:onclick="|location.href='/board/insert'|">글쓰기</button>
 				</th>
 			</tr>
-			<tr>
-				
+			<tr th:each="board : ${boardList}">
+				<td th:text="${board.title}"></td>
+				<td th:text="${board.content}"></td>
+				<td th:text="${board.reg_date}"></td>
 			</tr>
 		</table>
     </div>
