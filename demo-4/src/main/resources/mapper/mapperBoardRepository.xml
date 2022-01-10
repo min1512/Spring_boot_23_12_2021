@@ -10,8 +10,8 @@
   	INSERT INTO BOARD(
   		title, content
   	)	VALUES(
-  		#{title}
-  		,#{content}
+  		#{boardTitle}
+  		,#{boardContent}
   	)
   </insert>
 </mapper>

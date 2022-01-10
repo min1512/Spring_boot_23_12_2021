@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.BoardForm;
 import com.example.demo.repository.BoardRepository;
 
 @Service
@@ -19,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
   }
   
   @Override
-  public String insertBoards() {
-    return boardRepository.insertBoards();
+  public void insertBoards(BoardForm form) {
+	  boardRepository.insertBoards(form);
   }
 }

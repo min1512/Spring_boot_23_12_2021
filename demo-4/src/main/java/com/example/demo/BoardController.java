@@ -32,7 +32,8 @@ public class BoardController {
   @PostMapping("/board/insert")
   public String createBoard(BoardForm form) {
 	  System.out.println(form.toString());
-	  return boardService.insertBoards();
+	  boardService.insertBoards(form);
+	  return "redirect:/board/insert";
   }
   
   @GetMapping("/v1/board")

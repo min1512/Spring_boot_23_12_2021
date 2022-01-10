@@ -16,6 +16,22 @@ public class BoardForm {
 				"title='" + boardTitle + '\'' +
 				", content='" + boardContent + '\'' +
 				'}';
+	}
+
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+
+	public String getBoardContent() {
+		return boardContent;
+	}
+
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}	
 	
 }
