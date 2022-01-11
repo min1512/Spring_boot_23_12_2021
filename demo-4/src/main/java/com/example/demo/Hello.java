@@ -14,12 +14,6 @@ public class Hello {
 		return "hello";
 	}
 	
-	@GetMapping("/login")
-	public ResponseEntity<String> login() {
-		String msg = "loginPage";
-		return ResponseEntity.ok(msg);
-	}
-	
 	@GetMapping("/search")
 	public ResponseEntity<String> search() {
 		String msg = "searchPage";
