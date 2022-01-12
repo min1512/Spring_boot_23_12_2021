@@ -6,12 +6,14 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.dto.BoardForm;
+import com.example.demo.dto.MemberForm;
 
 @Mapper
 @Repository
 public interface MemberRepository {
   List<Map<String, Object>> getBoards();
   
-  void insertBoards(BoardForm form);
+  void insertMembers(MemberForm form);
+  
+  MemberForm findByEmail(String email);
 }

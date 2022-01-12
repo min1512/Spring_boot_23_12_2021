@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.MemberRepository">  
+  <insert id="insertMembers" parameterType="com.example.demo.dto.MemberForm">
+  	INSERT INTO user(
+  		id, pw, name, birthday, phonetel
+  	)	VALUES(
+  		#{memberid}
+  		,#{memberpw}
+  		,#{membername}
+  		,#{memberbirthday}
+  		,#{memberphonetel}
+  	)
+  </insert>
+  <select id="findByEmail"
+   parameterType="com.example.demo.dto.MemberForm"
+   resultType="MemberForm"
+   >
+    SELECT
+     * 
+    FROM
+    	user u
+   	WHERE
+   		u.id = #{memberid}   				
+  </select>
+</mapper>
