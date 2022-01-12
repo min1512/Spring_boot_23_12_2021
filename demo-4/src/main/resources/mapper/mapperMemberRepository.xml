@@ -19,7 +19,13 @@
    resultType="MemberForm"
    >
     SELECT
-     * 
+     u.idx,
+     u.id,
+     u.pw,	
+     u.name,
+     u.birthday,
+     u.phonetel,
+     DATE_FORMAT(u.regdate,'%Y-%m-%d %H:%i:%S') as regdate  
     FROM
     	user u
    	WHERE

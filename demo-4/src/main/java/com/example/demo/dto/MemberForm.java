@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class MemberForm {
 	private String idx;
@@ -10,9 +10,9 @@ public class MemberForm {
 	private String memberbirthday;
 	private String memberphonetel;
 	private Boolean loginUser;
-	private Timestamp regdate;
+	private Date regdate;
 	
-	public  MemberForm(String idx, String memberid, String memberpw, String membername, String memberbirthday, String memberphonetel, Boolean loginUser, Timestamp regdate) {
+	public  MemberForm(String idx, String memberid, String memberpw, String membername, String memberbirthday, String memberphonetel, Boolean loginUser, Date regdate) {
 		this.memberid = memberid;
 		this.memberpw = memberpw;
 		this.membername = membername;
@@ -33,7 +33,7 @@ public class MemberForm {
 				", phonetel='" + memberphonetel + '\'' +
 				", regdate='" + regdate + '\'' +
 				'}';
-	}
+	}	
 
 	public String getIdx() {
 		return idx;
@@ -91,11 +91,11 @@ public class MemberForm {
 		this.loginUser = loginUser;
 	}
 	
-	public Timestamp getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Timestamp regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	
