@@ -14,20 +14,11 @@
   		,#{memberphonetel}
   	)
   </insert>
-  <select id="findByEmail"
-   parameterType="com.example.demo.dto.MemberForm"
-   resultType="MemberForm"
-   >
+  <select id="findByEmail" parameterType="com.example.demo.dto.MemberForm" resultType="com.example.demo.dto.MemberForm">
     SELECT
-     u.idx,
-     u.id,
-     u.pw,	
-     u.name,
-     u.birthday,
-     u.phonetel,
-     DATE_FORMAT(u.regdate,'%Y-%m-%d %H:%i:%S') as regdate  
+       *
     FROM
-    	user u
+    	user u 
    	WHERE
    		u.id = #{memberid}   				
   </select>
