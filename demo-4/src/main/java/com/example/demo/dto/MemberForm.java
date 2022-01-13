@@ -24,7 +24,7 @@ public class MemberForm {
 	@Override
 	public String toString() {
 		return "MemberForm{" +				
-				"id='" + idx + '\'' +
+				"idx='" + idx + '\'' +
 				"id='" + memberid + '\'' +
 				", pw='" + memberpw + '\'' +
 				", name='" + membername + '\'' +
