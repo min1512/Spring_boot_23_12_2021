@@ -8,32 +8,31 @@ public class MemberForm {
 	private String memberpw;
 	private String membername;
 	private String memberbirthday;
-	private String memberphonetel;
-	private Boolean loginUser;
+	private String memberphonetel;	
 	private Date regdate;
 	
-	public  MemberForm(String idx, String memberid, String memberpw, String membername, String memberbirthday, String memberphonetel, Boolean loginUser, Date regdate) {
+	public  MemberForm(String idx, String memberid, String memberpw, String membername, String memberbirthday, String memberphonetel, Date regdate) {		
+		this.idx = idx;
 		this.memberid = memberid;
 		this.memberpw = memberpw;
 		this.membername = membername;
 		this.memberbirthday = memberbirthday;
-		this.memberphonetel = memberphonetel;
-		this.loginUser = loginUser;
+		this.memberphonetel = memberphonetel;		
 		this.regdate = regdate;
-	}
+	}	
 
 	@Override
 	public String toString() {
-		return "MemberForm{" +
-				"idx='" + idx + '\'' +
+		return "MemberForm{" +				
+				"id='" + idx + '\'' +
 				"id='" + memberid + '\'' +
 				", pw='" + memberpw + '\'' +
 				", name='" + membername + '\'' +
 				", birthday='" + memberbirthday + '\'' +
-				", phonetel='" + memberphonetel + '\'' +
+				", phonetel='" + memberphonetel + '\'' +			
 				", regdate='" + regdate + '\'' +
 				'}';
-	}	
+	}
 
 	public String getIdx() {
 		return idx;
@@ -83,14 +82,6 @@ public class MemberForm {
 		this.memberphonetel = memberphonetel;
 	}
 	
-	public Boolean getLoginUser() {
-		return loginUser;
-	}
-
-	public void setLoginUser(Boolean loginUser) {
-		this.loginUser = loginUser;
-	}
-	
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -98,5 +89,5 @@ public class MemberForm {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+
 }
