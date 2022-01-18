@@ -22,4 +22,12 @@
    	WHERE
    		u.id = #{memberid}   				
   </select>
+  <select id="selectById" parameterType="com.example.demo.dto.MemberForm" resultType="com.example.demo.dto.MemberForm">
+	  SELECT
+	       *
+	    FROM
+	    	user u 
+	   	WHERE
+	   		u.id = #{memberid} 
+  </select>
 </mapper>

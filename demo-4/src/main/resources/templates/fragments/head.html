@@ -47,7 +47,9 @@
 	      </ul>
 	      <form class="d-flex">
 	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	        <button class="btn btn-outline-success" type="submit">Search</button>
+	        <button class="btn btn-outline-success" type="submit">Search</button>	        
+	        <a th:if="${session.member}" th:text="${session.member}"></a>
+	        <a th:if="${session.member}" th:href="@{/logout}"  th:text="로그아웃"></a>
 	      </form>
 	    </div>
 	  </div>

@@ -3,6 +3,9 @@ package com.example.demo;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +28,20 @@ public class BoardController {
   }
   
   @GetMapping("/board/insert")
-  public String boardInsert(Model model) {
-	  model.addAttribute("board","게시판");
+  public String boardInsert(Model model, HttpServletRequest request) {
+	  HttpSession session = request.getSession();
+	  
+	  Object memberSession = session.getAttribute("member");
+	  System.out.println(memberSession);
+	  
+	  session.setAttribute("user", memberSession);
+	  	  
 	  return "boardInsert";
   }
   
   @PostMapping("/board/insert")
-  public String createBoard(BoardForm form) {
-	  System.out.println(form.toString());
+  public String createBoard(BoardForm form) {	  
+	  System.out.println(form.toString());	  
 	  boardService.insertBoards(form);
 	  return "redirect:/board";
   }

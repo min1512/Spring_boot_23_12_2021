@@ -7,7 +7,9 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 		<table class="table table-bordered"> 
-			<form class="form-inline" th:action="@{/board/insert}" method="post">
+			<form class="form-inline" th:action="@{/board/insert}" method="post">				
+				<input type="hidden" class="form-control" id="user" name="user" th:if="${session.member != null}" th:value="${session.member}" />
+				<input type="hidden" class="form-control" id="user" name="user" th:if="${session.member == null}" th:value="GUEST" />
 				<tr>
 					<th>제목</th>
 					<td><input type="text" class="form-control" id="boardTitle" name="boardTitle" /></td>
@@ -21,7 +23,6 @@
 						<button type="submit" class="btn btn-dark">등록</button>
 					</td>
 				</tr>
-			
 			</form>
 		</table>
     </div>

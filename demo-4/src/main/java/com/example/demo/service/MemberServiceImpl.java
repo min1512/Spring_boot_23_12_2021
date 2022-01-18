@@ -23,6 +23,11 @@ public class MemberServiceImpl implements MemberService {
   }
   
   @Override
+  public MemberForm selectById(String email) {
+	  return memberRepository.selectById(email);
+  }
+  
+  @Override
   public boolean validationLogin(String email, String password) {
 	  MemberForm loginUser = memberRepository.findByEmail(email);
 	  

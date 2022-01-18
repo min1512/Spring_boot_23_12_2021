@@ -1,5 +1,10 @@
 package com.example.demo;
 
+import java.util.Objects;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +19,46 @@ public class MemberController {
   
 	  @Autowired
 	  private MemberService memberservice;
+	  
+	  @GetMapping("/logout")
+	  public void logout( HttpServletRequest request ) {
+		  HttpSession session = request.getSession();
+		  session.invalidate();// 세션 날림
+	  }
 		
 	  @GetMapping("/login")
-	  public String LoginForm(@ModelAttribute MemberForm memberForm ) {
+	  public String LoginForm(@ModelAttribute MemberForm memberForm, HttpServletRequest request ) {
+		  HttpSession session = request.getSession();
+		  
+		  Object memberSession = session.getAttribute("member");
+		  
+		  System.out.println("getPage");
+		  System.out.println(memberSession);
+		  
+		  if(Objects.nonNull(memberSession)) {
+			  return "redirect:/board";
+		  }
+		  
 		  return "login";
 	  }  
 	  
 	  @PostMapping("/login")
-	  public String login(MemberForm form) {
+	  public String login(MemberForm form, HttpServletRequest request) {
 	  
-		  memberservice.validationLogin(form.getMemberid(), form.getMemberpw());
+		  boolean result = memberservice.validationLogin(form.getMemberid(), form.getMemberpw());
+		  
+		  if(result) {
+			  // 로그인 성공
+			  HttpSession session = request.getSession();
+			  
+			  MemberForm member =memberservice.selectById(form.getMemberid());			  
+			  System.out.println(member);
+			  
+			  session.setAttribute("member", member.getMemberid());
+			  
+			  return "redirect:/board";
+		  }
+		  
 	  	  
 		  return "redirect:/login";
 	  }

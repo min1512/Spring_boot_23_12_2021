@@ -19,10 +19,11 @@
   </select>
   <insert id="insertBoards" parameterType="com.example.demo.dto.BoardForm">
   	INSERT INTO BOARD(
-  		title, content
+  		title, content, user
   	)	VALUES(
   		#{boardTitle}
   		,#{boardContent}
+  		,#{user}
   	)
   </insert>
 </mapper>
