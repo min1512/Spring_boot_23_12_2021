@@ -3,7 +3,10 @@
 	lagn="ko"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+	
+	<!-- 공통 스크립트-->
+        <th:block th:replace="fragments/script :: scriptFragment"></th:block>
+	
     <!-- 공통 헤더-->
     <th:block th:replace="fragments/head :: headFragment"></th:block>
 
@@ -22,9 +25,6 @@
                 <!-- 공통 하단-->
                 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
             </div>
-        </div>
-
-        <!-- 공통 스크립트-->
-        <th:block th:replace="fragments/script :: scriptFragment"></th:block>
+        </div>        
     </body>
 </html>
