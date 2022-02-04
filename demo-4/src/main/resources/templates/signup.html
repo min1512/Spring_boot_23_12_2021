@@ -19,7 +19,7 @@
 	        <div>
 	            <label for="memberid">ID</label>
 	            <input type="text" id="memberid" th:field="*{memberid}" class="form-control"
-	                   th:errorclass="field-error">
+	                   th:errorclass="field-error" onkeyup="enterId(this.value)">
 	            <div class="field-error" th:errors="*{memberid}"/>
 	        </div>
 	        <div>
@@ -65,3 +65,22 @@
 	</div>
 </th:block>
 </html>
+
+<script type="text/javascript">	
+	function enterId(val){
+				
+		var values = { id: val };
+		console.log(values);
+		
+		$.ajax({
+	        url: "/signup/ckIdValue",
+	        type: "POST",	        
+	        data: values,
+    	})
+	    .done(function (result) {
+			console.log(result);
+	        $('#commentTable').replaceWith(result);
+	    });
+	    
+	}	
+</script>

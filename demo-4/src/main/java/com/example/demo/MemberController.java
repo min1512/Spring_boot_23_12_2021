@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Map;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.MemberForm;
 import com.example.demo.service.MemberService;
@@ -72,6 +74,13 @@ public class MemberController {
 	  public String signup(MemberForm form) {
 		  memberservice.insertMembers(form);
 		  return "redirect:/login";
+	  }
+	  
+	  @PostMapping("/signup/ckIdValue")
+	  public String ckIdValue(MemberForm form, @RequestParam Map<String, Object> paramMap ) {
+		  System.out.println(paramMap.get("id").toString());
+		  //memberservice.insertMembers(form);
+		  return "/signup :: #commentTable";
 	  }
   
 }
