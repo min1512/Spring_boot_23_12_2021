@@ -4,13 +4,15 @@
       layout:decorate="~{layouts/default}">
       
 <th:block layout:fragment="content">
-	<div class="container">
+	<div class="container" id="container">
 	
 	    <div class="py-5 text-center">
 	        <h2>회원가입</h2>
 	    </div>
 	
 	    <form action="item.html" th:action th:object="${memberForm}" method="post">
+	    
+	    	<input type="hidden" id="ckIdStatus" name="ckIdStatus" />
 
 	        <div th:if="${#fields.hasGlobalErrors()}">
 	            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
@@ -19,7 +21,8 @@
 	        <div>
 	            <label for="memberid">ID</label>
 	            <input type="text" id="memberid" th:field="*{memberid}" class="form-control"
-	                   th:errorclass="field-error" onkeyup="enterId(this.value)">
+	                   th:errorclass="field-error" onblur="enterId(this.value)" />
+	            <a id="ckIdText" style="color: orangered;"></a>       
 	            <div class="field-error" th:errors="*{memberid}"/>
 	        </div>
 	        <div>
@@ -45,7 +48,7 @@
 	            <input type="text" id="memberphonetel" th:field="*{memberphonetel}" class="form-control"
 	                   th:errorclass="field-error">
 	            <div class="field-error" th:errors="*{memberphonetel}"/>	            
-	        </div>	        
+	        </div>	        	        
 	
 	        <hr class="my-4">
 	
@@ -72,15 +75,34 @@
 		var values = { id: val };
 		console.log(values);
 		
-		$.ajax({
+		//$.ajax({
+	        //url: "/signup/ckIdValue",
+	        //type: "POST",	        
+	        //data: values,
+    	//})
+	    //.done(function (result) {
+			//console.log(result);
+	        //$('#container').replaceWith(result);	        
+	    //});
+	    
+	    $.ajax({
 	        url: "/signup/ckIdValue",
 	        type: "POST",	        
 	        data: values,
-    	})
-	    .done(function (result) {
-			console.log(result);
-	        $('#commentTable').replaceWith(result);
-	    });
+	        dataType: "json",
+	        success : function(result){
+				console.log(result);
+				
+				var message = result.message;
+				var ckStatus = result.ckStatus;
+								
+				$("#ckIdStatus").val(ckStatus);
+				$('#ckIdText').text(message);
+			},
+			error:function(result){
+				console.log(result);
+			}
+    	})	    
 	    
-	}	
+	}
 </script>
