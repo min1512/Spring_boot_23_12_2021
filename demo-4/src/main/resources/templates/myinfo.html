@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+      
+<th:block layout:fragment="content">
+	<div class="container" id="container">
+	
+	    <div class="py-5 text-center">
+	        <h2>나의 정보</h2>
+	    </div>
+	
+	    <form action="item.html" th:action th:object="${memberForm}" id="memberForm" method="post">
+	    		
+	        <div>
+	            <label for="memberid">아이디</label>
+	            <input type="text" id="memberid" th:field="*{memberid}" class="form-control"
+	                   th:errorclass="field-error" onblur="enterId(this.value)" />
+	            <a id="ckIdText" style="color: orangered;"></a>       
+	            <div class="field-error" th:errors="*{memberid}"/>
+	        </div>
+	        <div>
+	            <label for="memberpw">비밀번호</label>
+	            <input type="password" id="memberpw" th:field="*{memberpw}" class="form-control"
+	                   th:errorclass="field-error">
+	            <div class="field-error" th:errors="*{memberpw}"/>
+	        </div>
+	        <div>
+	            <label for="memberpw">비밀번호 확인</label>
+	            <input type="password" id="memberpw" th:field="*{memberpw}" class="form-control"
+	                   th:errorclass="field-error">
+	            <div class="field-error" th:errors="*{memberpw}"/>
+	        </div>
+	        <div>
+	            <label for="membername">이름</label>
+	            <input type="text" id="membername" th:field="*{membername}" class="form-control"
+	                   th:errorclass="field-error">
+	            <div class="field-error" th:errors="*{membername}"/>	            
+	        </div>
+	        <div>
+	            <label for="memberbirthday">생년월일</label>
+	            <input type="text" id="memberbirthday" th:field="*{memberbirthday}" class="form-control"
+	                   th:errorclass="field-error">
+	            <div class="field-error" th:errors="*{memberbirthday}"/>	            
+	        </div>
+	        <div>
+	            <label for="memberphonetel">휴대폰번호</label>
+	            <input type="text" id="memberphonetel" th:field="*{memberphonetel}" class="form-control"
+	                   th:errorclass="field-error">
+	            <div class="field-error" th:errors="*{memberphonetel}"/>	            
+	        </div>
+	        <div>
+	            <label for="memberleave">회원탈퇴</label>
+	            <button class="w-100 btn btn-primary btn-lg" type="button" id="memberleave" onclick="leaveMember()">회원탈퇴</button>
+	        </div>	        	        
+	
+	        <hr class="my-4">
+	
+	        <div class="row">
+	            <div class="col">
+	                <button class="w-100 btn btn-primary btn-lg" type="button" onclick="changeMember()">변경 완료</button>
+	            </div>
+	            <div class="col">
+	                <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='items.html'"
+	                        th:onclick="|location.href='@{/}'|"
+	                        type="button">취소</button>
+	            </div>
+	        </div>
+
+    	</form>
+	
+	</div>
+</th:block>
+</html>
+
+<script type="text/javascript">	
+	function enterId(val){
+				
+		var values = { id: val };
+		console.log(values);
+		
+		//$.ajax({
+	        //url: "/signup/ckIdValue",
+	        //type: "POST",	        
+	        //data: values,
+    	//})
+	    //.done(function (result) {
+			//console.log(result);
+	        //$('#container').replaceWith(result);	        
+	    //});
+	    
+	    $.ajax({
+	        url: "/signup/ckIdValue",
+	        type: "POST",	        
+	        data: values,
+	        dataType: "json",
+	        success : function(result){
+				console.log(result);
+				
+				var message = result.message;
+				var ckStatus = result.ckStatus;
+								
+				$("#ckIdStatus").val(ckStatus);
+				$('#ckIdText').text(message);
+			},
+			error:function(result){
+				console.log(result);
+			}
+    	})	    
+	    
+	}
+	
+	function createMember(){
+		var memberForm = $('#memberForm').serialize();
+		console.log(memberForm);
+		
+		var memberid = $('#memberid');//아이디
+		var memberpw = $('#memberpw');//비번
+		var membername = $('#membername');//이름
+		var memberbirthday = $('#memberbirthday');//생년월일
+		var memberphonetel = $('#memberphonetel');//휴대폰 번호
+		var ckIdStatus = $('#ckIdStatus');//아이디 중복 체크		
+		
+		if(memberid.val() == ''){
+			alert('아이디 입력 하세요');
+			memberid.focus();
+			return false;
+		}
+		
+		if(memberpw.val() == ''){
+			alert('비밀번호 입력 하세요');
+			memberpw.focus();
+			return false;
+		}
+		
+		if(membername.val() == ''){
+			alert('이름 입력 하세요');
+			membername.focus();
+			return false;
+		}
+		
+		if(memberbirthday.val() == ''){
+			alert('생년월일 입력 하세요');
+			memberbirthday.focus();
+			return false;
+		}
+		
+		if(memberphonetel.val() == ''){
+			alert('휴대폰 번호 입력 하세요');
+			memberphonetel.focus();
+			return false;
+		}
+		
+		if(ckIdStatus.val() == 'fail'){
+			alert('중복된 아이디 입니다. 다른 아이디 입력 하세요.');
+			return false;
+		}
+		
+		$.ajax({
+			url: "/signup",
+	        type: "POST",	        
+	        data: memberForm,
+	        success: function(result){
+				console.log(result);
+				location.href='/login';
+			},
+			error: function(result){
+				console.log(result);
+			}
+		})
+		
+	}
+</script>

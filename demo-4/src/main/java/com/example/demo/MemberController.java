@@ -98,20 +98,25 @@ public class MemberController {
 		  Object memberIdCk = member;
 		  
 		  
-		  map.put("status", "200");  
-		  if(Objects.nonNull(memberIdCk)) {
+		  map.put("status", "200");
+		  
+		  if(paramMap.get("id").toString() == "") {
 			  map.put("ckStatus", "fail");
-			  map.put("message", "이미사용중인 아이디 입니다.");
-			  //model.addAttribute("message","이미사용중인 아이디 입니다.");
-			  //System.out.println("사용 불가");
+			  map.put("message", "아이디를 입력 하세요.");
 		  }else {
-			  map.put("ckStatus", "success");
-			  map.put("message", "사용 가능한 아이디 입니다.");
-			  //model.addAttribute("message","사용 가능한 아이디 입니다.");
-			  //System.out.println("사용 가능");
+			  if(Objects.nonNull(memberIdCk)) {
+				  map.put("ckStatus", "fail");
+				  map.put("message", "이미사용중인 아이디 입니다.");
+				  //model.addAttribute("message","이미사용중인 아이디 입니다.");
+				  //System.out.println("사용 불가");
+			  }else {
+				  map.put("ckStatus", "success");
+				  map.put("message", "사용 가능한 아이디 입니다.");
+				  //model.addAttribute("message","사용 가능한 아이디 입니다.");
+				  //System.out.println("사용 가능");
+			  }
 		  }
 
 		  return map;
 	  }
-  
 }
