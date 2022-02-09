@@ -23,7 +23,7 @@ public class BoardController {
   @GetMapping("/board")
   public String board(Model model) {
 	  model.addAttribute("boardList",boardService.getBoards());
-	  System.out.println(boardService.getBoards());
+	  //System.out.println(boardService.getBoards());
 	  return "board";
   }
   

@@ -10,12 +10,12 @@
 	        <h2>나의 정보</h2>
 	    </div>
 	
-	    <form action="item.html" th:action th:object="${memberForm}" id="memberForm" method="post">
+	    <form action="item.html" th:object="${memberForm}" th:each="member : ${memberlist}" id="memberForm" method="post">
 	    		
 	        <div>
 	            <label for="memberid">아이디</label>
 	            <input type="text" id="memberid" th:field="*{memberid}" class="form-control"
-	                   th:errorclass="field-error" onblur="enterId(this.value)" />
+	                   th:errorclass="field-error" th:text="${member.id}" onblur="enterId(this.value)" />
 	            <a id="ckIdText" style="color: orangered;"></a>       
 	            <div class="field-error" th:errors="*{memberid}"/>
 	        </div>
