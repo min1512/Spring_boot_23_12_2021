@@ -10,43 +10,40 @@
 	        <h2>나의 정보</h2>
 	    </div>
 	
-	    <form action="item.html" th:object="${memberForm}" th:each="member : ${memberlist}" id="memberForm" method="post">
+	    <form action="item.html" th:object="${memberForm}" th:each="member : ${memberlist}" id="memberForm" method="post">	    	    	
 	    		
 	        <div>
 	            <label for="memberid">아이디</label>
-	            <input type="text" id="memberid" th:field="*{memberid}" class="form-control"
-	                   th:errorclass="field-error" th:text="${member.id}" onblur="enterId(this.value)" />
-	            <a id="ckIdText" style="color: orangered;"></a>       
+	            <input type="text" id="memberid" th:name="memberid" class="form-control"
+	                   th:errorclass="field-error" th:value="${member.memberid}" readonly/>	            
 	            <div class="field-error" th:errors="*{memberid}"/>
 	        </div>
 	        <div>
 	            <label for="memberpw">비밀번호</label>
-	            <input type="password" id="memberpw" th:field="*{memberpw}" class="form-control"
-	                   th:errorclass="field-error">
+	            <input type="password" id="memberpw" th:name="memberpw" class="form-control"
+	                   th:errorclass="field-error" >
 	            <div class="field-error" th:errors="*{memberpw}"/>
 	        </div>
 	        <div>
-	            <label for="memberpw">비밀번호 확인</label>
-	            <input type="password" id="memberpw" th:field="*{memberpw}" class="form-control"
-	                   th:errorclass="field-error">
-	            <div class="field-error" th:errors="*{memberpw}"/>
+	            <label for="memberpwCheck">비밀번호 확인</label>
+	            <input type="password" id="memberpwCheck" class="form-control">	            
 	        </div>
 	        <div>
 	            <label for="membername">이름</label>
-	            <input type="text" id="membername" th:field="*{membername}" class="form-control"
-	                   th:errorclass="field-error">
+	            <input type="text" id="membername" th:name="membername" class="form-control"
+	                   th:errorclass="field-error" th:value="${member.membername}">
 	            <div class="field-error" th:errors="*{membername}"/>	            
 	        </div>
 	        <div>
 	            <label for="memberbirthday">생년월일</label>
-	            <input type="text" id="memberbirthday" th:field="*{memberbirthday}" class="form-control"
-	                   th:errorclass="field-error">
+	            <input type="text" id="memberbirthday" th:name="memberbirthday" class="form-control"
+	                   th:errorclass="field-error" th:value="${member.memberbirthday}">
 	            <div class="field-error" th:errors="*{memberbirthday}"/>	            
 	        </div>
 	        <div>
 	            <label for="memberphonetel">휴대폰번호</label>
-	            <input type="text" id="memberphonetel" th:field="*{memberphonetel}" class="form-control"
-	                   th:errorclass="field-error">
+	            <input type="text" id="memberphonetel" th:name="memberphonetel" class="form-control"
+	                   th:errorclass="field-error" th:value="${member.memberphonetel}" >
 	            <div class="field-error" th:errors="*{memberphonetel}"/>	            
 	        </div>
 	        <div>
@@ -110,12 +107,13 @@
 	    
 	}
 	
-	function createMember(){
+	function changeMember(){
 		var memberForm = $('#memberForm').serialize();
 		console.log(memberForm);
 		
 		var memberid = $('#memberid');//아이디
 		var memberpw = $('#memberpw');//비번
+		var memberpwCheck = $('#memberpwCheck');//비번 확인
 		var membername = $('#membername');//이름
 		var memberbirthday = $('#memberbirthday');//생년월일
 		var memberphonetel = $('#memberphonetel');//휴대폰 번호
@@ -130,6 +128,20 @@
 		if(memberpw.val() == ''){
 			alert('비밀번호 입력 하세요');
 			memberpw.focus();
+			return false;
+		}
+		
+		if(memberpwCheck.val() == ''){
+			alert('비밀번호확인 입력 하세요');
+			memberpwCheck.focus();
+			return false;
+		}
+		
+		if(memberpw.val() != memberpwCheck.val()){
+			alert('비밀번호와 비밀번호 확인이 일치 하지 않습니다.');
+			memberpw.focus();
+			memberpw.val('');//초기화
+			memberpwCheck.val('');//초기화
 			return false;
 		}
 		
@@ -151,13 +163,8 @@
 			return false;
 		}
 		
-		if(ckIdStatus.val() == 'fail'){
-			alert('중복된 아이디 입니다. 다른 아이디 입력 하세요.');
-			return false;
-		}
-		
 		$.ajax({
-			url: "/signup",
+			url: "/myinfoUpdate",
 	        type: "POST",	        
 	        data: memberForm,
 	        success: function(result){

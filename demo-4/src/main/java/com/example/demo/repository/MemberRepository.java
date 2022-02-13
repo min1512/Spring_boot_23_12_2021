@@ -15,6 +15,8 @@ public interface MemberRepository {
   
   void insertMembers(MemberForm form);
   
+  void updateMembers(MemberForm form);
+  
   MemberForm selectById(String email);
   
   MemberForm findByEmail(String email);

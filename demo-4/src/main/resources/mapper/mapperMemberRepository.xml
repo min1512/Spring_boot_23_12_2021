@@ -14,6 +14,15 @@
   		,#{memberphonetel}
   	)
   </insert>
+  <update id="updateMembers" parameterType="com.example.demo.dto.MemberForm">
+  	UPDATE user
+  	SET
+		pw = #{memberpw}
+		,name = #{membername}
+		,birthday = #{memberbirthday}
+		,phonetel = #{memberphonetel}
+ 	WHERE id = #{memberid}
+  </update>  
   <select id="findByEmail" parameterType="com.example.demo.dto.MemberForm" resultType="com.example.demo.dto.MemberForm">
     SELECT
        *

@@ -32,7 +32,7 @@ public class BoardController {
 	  HttpSession session = request.getSession();
 	  
 	  Object memberSession = session.getAttribute("member");
-	  System.out.println(memberSession);
+	  //System.out.println(memberSession);
 	  
 	  session.setAttribute("user", memberSession);
 	  	  
@@ -41,7 +41,7 @@ public class BoardController {
   
   @PostMapping("/board/insert")
   public String createBoard(BoardForm form) {	  
-	  System.out.println(form.toString());	  
+	  //System.out.println(form.toString());	  
 	  boardService.insertBoards(form);
 	  return "redirect:/board";
   }

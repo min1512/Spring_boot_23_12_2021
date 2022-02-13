@@ -8,6 +8,8 @@ public interface MemberService {
 	
 	  void insertMembers(MemberForm form);
 	  
+	  void updateMembers(MemberForm form);
+	  
 	  MemberForm selectById(String email);
 }
 

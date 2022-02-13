@@ -23,6 +23,13 @@ public class MemberServiceImpl implements MemberService {
   }
   
   @Override
+  public void updateMembers(MemberForm form) {
+	  String encodedPassword = passwordEncoder.encode(form.getMemberpw());
+	  form.setMemberpw(encodedPassword);
+	  memberRepository.updateMembers(form);
+  }
+  
+  @Override
   public MemberForm selectById(String email) {
 	  return memberRepository.selectById(email);
   }
